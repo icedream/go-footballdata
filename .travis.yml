@@ -8,9 +8,6 @@ go:
   - tip
 
 install:
-  - export GOPATH="$HOME/gopath"
-  - mkdir -p "$GOPATH/src/github.com/icedream"
-  - mv "$TRAVIS_BUILD_DIR" "$GOPATH/src/github.com/icedream"
   - go get -v -t -d github.com/icedream/go-footballdata/...
 
 script:
