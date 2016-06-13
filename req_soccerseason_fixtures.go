@@ -20,7 +20,7 @@ func (r SoccerSeasonFixturesRequest) TimeFrame(timeframe time.Duration) SoccerSe
 }
 
 // Executes the request.
-func (r SoccerSeasonFixturesRequest) Do() (s SoccerSeason, err error) {
+func (r SoccerSeasonFixturesRequest) Do() (s FixtureList, err error) {
 	d, _, err := r.doJson("GET")
 	if err != nil {
 		return
