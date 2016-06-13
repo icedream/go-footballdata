@@ -6,7 +6,7 @@ type SoccerSeasonsRequest struct{ request }
 
 // Modifies the request to specify a season.
 func (r SoccerSeasonsRequest) Season(num uint32) SoccerSeasonsRequest {
-	r.v.Set("season", fmt.Sprintf("%i", num))
+	r.v.Set("season", fmt.Sprintf("%d", num))
 	return r
 }
 

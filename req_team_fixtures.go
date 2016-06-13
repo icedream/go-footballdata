@@ -15,7 +15,7 @@ func (r TeamFixturesRequest) TimeFrame(timeframe time.Duration) TeamFixturesRequ
 
 // Modifies the request to specify a list of leagues by their code.
 func (r TeamFixturesRequest) Season(season uint64) TeamFixturesRequest {
-	r.v.Set("season", fmt.Sprintf("%i", season))
+	r.v.Set("season", fmt.Sprintf("%d", season))
 	return r
 }
 
@@ -38,5 +38,5 @@ func (r TeamFixturesRequest) Do() (s FixturesResponse, err error) {
 
 // Prepares a request to fetch the fixtures of a soccer season.
 func (c *Client) FixturesOfTeam(id uint64) TeamFixturesRequest {
-	return TeamFixturesRequest{c.req("teams/%i/fixtures", id)}
+	return TeamFixturesRequest{c.req("teams/%d/fixtures", id)}
 }

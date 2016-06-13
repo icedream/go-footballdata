@@ -9,7 +9,7 @@ type SoccerSeasonFixturesRequest struct{ request }
 
 // Modifies the request to specify a match day.
 func (r SoccerSeasonFixturesRequest) Matchday(matchday uint16) SoccerSeasonFixturesRequest {
-	r.v.Set("matchday", fmt.Sprintf("%i", matchday))
+	r.v.Set("matchday", fmt.Sprintf("%d", matchday))
 	return r
 }
 
@@ -32,5 +32,5 @@ func (r SoccerSeasonFixturesRequest) Do() (s FixtureList, err error) {
 
 // Prepares a request to fetch the fixtures of a soccer season.
 func (c *Client) FixturesOfSoccerSeason(soccerSeasonId uint64) SoccerSeasonFixturesRequest {
-	return SoccerSeasonFixturesRequest{c.req("soccerseasons/%i/fixtures", soccerSeasonId)}
+	return SoccerSeasonFixturesRequest{c.req("soccerseasons/%d/fixtures", soccerSeasonId)}
 }

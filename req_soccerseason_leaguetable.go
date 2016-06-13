@@ -6,7 +6,7 @@ type SoccerSeasonLeagueTableRequest struct{ request }
 
 // Modifies the request to specify a match day.
 func (r SoccerSeasonLeagueTableRequest) Matchday(matchday uint16) SoccerSeasonLeagueTableRequest {
-	r.v.Set("matchday", fmt.Sprintf("%i", matchday))
+	r.v.Set("matchday", fmt.Sprintf("%d", matchday))
 	return r
 }
 
@@ -23,5 +23,5 @@ func (r SoccerSeasonLeagueTableRequest) Do() (s SoccerSeason, err error) {
 
 // Prepares a new request to fetch the league table of a given soccer season.
 func (c *Client) LeagueTableOfSoccerSeason(soccerSeasonId uint64) SoccerSeasonLeagueTableRequest {
-	return SoccerSeasonLeagueTableRequest{c.req("soccerseasons/%i/leagueTable", soccerSeasonId)}
+	return SoccerSeasonLeagueTableRequest{c.req("soccerseasons/%d/leagueTable", soccerSeasonId)}
 }

@@ -6,7 +6,7 @@ type FixtureRequest struct{ request }
 
 // Modifies the request to specify the number of former games to be analyzed (normally 10).
 func (r FixtureRequest) Head2Head(num uint16) FixtureRequest {
-	r.v.Set("head2head", fmt.Sprintf("%i", num))
+	r.v.Set("head2head", fmt.Sprintf("%d", num))
 	return r
 }
 
@@ -23,5 +23,5 @@ func (r FixtureRequest) Do() (s Fixture, err error) {
 
 // Prepares a request to fetch the fixtures of a soccer season.
 func (c *Client) Fixture(id uint64) FixtureRequest {
-	return FixtureRequest{c.req("fixture/%i", id)}
+	return FixtureRequest{c.req("fixture/%d", id)}
 }

@@ -22,5 +22,5 @@ func (r TeamRequest) Do() (s Team, err error) {
 
 // Prepares a request to fetch a team's information.
 func (c *Client) Team(id uint64) TeamRequest {
-	return TeamRequest{c.req("teams/%i", id), id}
+	return TeamRequest{c.req("teams/%d", id), id}
 }
