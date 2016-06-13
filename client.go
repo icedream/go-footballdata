@@ -37,6 +37,7 @@ func (c *Client) doJson(method string, path string, values url.Values) (j *json.
 	req := &http.Request{
 		Method: method,
 		URL:    resolveRelativeUrl(path, values),
+		Header: http.Header{},
 	}
 
 	// Set request headers
