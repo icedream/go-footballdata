@@ -3,6 +3,7 @@ package footballdata
 import (
 	"bytes"
 	"encoding/json"
+	"errors"
 	"fmt"
 	"io"
 	"net/http"
@@ -50,12 +51,18 @@ func (c *Client) doJson(method string, path string, values url.Values) (j *json.
 	if err != nil {
 		return
 	}
+	defer resp.Body.Close()
 
 	// Save metadata from headers
 	meta = responseMetaFromHeaders(resp.Header)
 
+	// Expect the request to be successful, otherwise throw an error
+	if resp.StatusCode != 200 {
+		err = errors.New(resp.Status)
+		return
+	}
+
 	// Download to buffer to allow passing back a fully prepared decoder
-	defer resp.Body.Close()
 	buf := new(bytes.Buffer)
 	io.Copy(buf, resp.Body)
 
