@@ -38,7 +38,7 @@ type client struct {
 	httpClient *http.Client
 
 	// Insert an API token here if you have one. It will be sent across with all requests.
-	AuthToken  string
+	AuthToken string
 }
 
 // NewClient Creates a new Client instance that wraps around the given HTTP client.
@@ -50,10 +50,9 @@ func NewClient(h *http.Client) Client {
 
 // SetToken Set the authentication token
 // Calling this method is *optional*
-func (c* client) SetToken(authToken string) {
-	c.AuthToken=authToken
+func (c *client) SetToken(authToken string) {
+	c.AuthToken = authToken
 }
-
 
 func (c *client) req(path string, pathValues ...interface{}) request {
 	return request{c, fmt.Sprintf(path, pathValues...), url.Values{}}
