@@ -2,7 +2,7 @@ package footballdata
 
 type TeamPlayersRequest struct{ request }
 
-// Executes the request.
+// Do Executes the request.
 func (r TeamPlayersRequest) Do() (s PlayerList, err error) {
 	d, _, err := r.doJson("GET")
 	if err != nil {
@@ -13,7 +13,7 @@ func (r TeamPlayersRequest) Do() (s PlayerList, err error) {
 	return
 }
 
-// Prepares a request to fetch a team's players.
-func (c *Client) PlayersOfTeam(id uint64) TeamPlayersRequest {
+// PlayersOfTeam Prepares a request to fetch a team's players.
+func (c *client) PlayersOfTeam(id uint64) TeamPlayersRequest {
 	return TeamPlayersRequest{c.req("teams/%d/players", id)}
 }

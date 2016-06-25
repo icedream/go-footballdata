@@ -6,11 +6,11 @@ import (
 )
 
 type request struct {
-	c *Client
-	p string
-	v url.Values
+	fdClient  *client
+	path      string
+	urlValues url.Values
 }
 
 func (r request) doJson(method string) (*json.Decoder, ResponseMeta, error) {
-	return r.c.doJson(method, r.p, r.v)
+	return r.fdClient.doJson(method, r.path, r.urlValues)
 }

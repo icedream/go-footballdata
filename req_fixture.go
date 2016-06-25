@@ -4,13 +4,13 @@ import "fmt"
 
 type FixtureRequest struct{ request }
 
-// Modifies the request to specify the number of former games to be analyzed (normally 10).
+// Head2Head Modifies the request to specify the number of former games to be analyzed (normally 10).
 func (r FixtureRequest) Head2Head(num uint16) FixtureRequest {
-	r.v.Set("head2head", fmt.Sprintf("%d", num))
+	r.urlValues.Set("head2head", fmt.Sprintf("%d", num))
 	return r
 }
 
-// Executes the request.
+// Do Executes the request.
 func (r FixtureRequest) Do() (s Fixture, err error) {
 	d, _, err := r.doJson("GET")
 	if err != nil {
@@ -21,7 +21,7 @@ func (r FixtureRequest) Do() (s Fixture, err error) {
 	return
 }
 
-// Prepares a request to fetch the fixtures of a soccer season.
-func (c *Client) Fixture(id uint64) FixtureRequest {
+// Fixture Prepares a request to fetch the fixtures of a soccer season.
+func (c *client) Fixture(id uint64) FixtureRequest {
 	return FixtureRequest{c.req("fixture/%d", id)}
 }
