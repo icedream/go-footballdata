@@ -5,7 +5,7 @@ type TeamRequest struct {
 	id uint64
 }
 
-// Do Executes the request.
+// Do executes the request.
 func (r TeamRequest) Do() (s Team, err error) {
 	d, _, err := r.doJson("GET")
 	if err != nil {
@@ -20,7 +20,7 @@ func (r TeamRequest) Do() (s Team, err error) {
 	return
 }
 
-// Team Prepares a request to fetch a team's information.
+// Team prepares a request to fetch a team's information.
 func (c *client) Team(id uint64) TeamRequest {
 	return TeamRequest{c.req("teams/%d", id), id}
 }

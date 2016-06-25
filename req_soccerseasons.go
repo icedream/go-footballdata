@@ -4,13 +4,13 @@ import "fmt"
 
 type SoccerSeasonsRequest struct{ request }
 
-// Season Modifies the request to specify a season.
+// Season modifies the request to specify a season.
 func (r SoccerSeasonsRequest) Season(num uint32) SoccerSeasonsRequest {
 	r.urlValues.Set("season", fmt.Sprintf("%d", num))
 	return r
 }
 
-// Do Executes the request.
+// Do executes the request.
 func (r SoccerSeasonsRequest) Do() (s SoccerSeasonList, err error) {
 	d, _, err := r.doJson("GET")
 	if err != nil {
@@ -21,7 +21,7 @@ func (r SoccerSeasonsRequest) Do() (s SoccerSeasonList, err error) {
 	return
 }
 
-// SoccerSeasons Prepares a request to fetch the complete list of soccer seasons.
+// SoccerSeasons prepares a request to fetch the complete list of soccer seasons.
 func (c *client) SoccerSeasons() SoccerSeasonsRequest {
 	return SoccerSeasonsRequest{c.req("soccerseasons")}
 }

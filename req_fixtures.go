@@ -7,19 +7,19 @@ import (
 
 type FixturesRequest struct{ request }
 
-// TimeFrame Modifies the request to specify a specific time frame.
+// TimeFrame modifies the request to specify a specific time frame.
 func (r FixturesRequest) TimeFrame(timeframe time.Duration) FixturesRequest {
 	r.urlValues.Set("timeFrame", durationToTimeFrame(timeframe))
 	return r
 }
 
-// League Modifies the request to specify a list of leagues by their code.
+// League modifies the request to specify a list of leagues by their code.
 func (r FixturesRequest) League(leagueCodes ...string) FixturesRequest {
 	r.urlValues.Set("league", strings.Join(leagueCodes, ","))
 	return r
 }
 
-// Do Executes the request.
+// Do executes the request.
 func (r FixturesRequest) Do() (s FixturesResponse, err error) {
 	d, _, err := r.doJson("GET")
 	if err != nil {
@@ -30,7 +30,7 @@ func (r FixturesRequest) Do() (s FixturesResponse, err error) {
 	return
 }
 
-// Fixtures Prepares a request to fetch the fixtures of a soccer season.
+// Fixtures prepares a request to fetch the fixtures of a soccer season.
 func (c *client) Fixtures() FixturesRequest {
 	return FixturesRequest{c.req("fixtures")}
 }

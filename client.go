@@ -41,15 +41,15 @@ type client struct {
 	AuthToken string
 }
 
-// NewClient Creates a new Client instance that wraps around the given HTTP client.
+// NewClient creates a new Client instance that wraps around the given HTTP client.
 //
 // Call SetToken to add your token.
 func NewClient(h *http.Client) Client {
 	return &client{httpClient: h}
 }
 
-// SetToken Set the authentication token
-// Calling this method is *optional*
+// SetToken sets the authentication token.
+// Calling this method is *optional*.
 func (c *client) SetToken(authToken string) {
 	c.AuthToken = authToken
 }
