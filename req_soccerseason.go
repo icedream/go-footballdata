@@ -2,7 +2,7 @@ package footballdata
 
 type SoccerSeasonRequest struct{ request }
 
-// Executes the request.
+// Do Executes the request.
 func (r SoccerSeasonRequest) Do() (s SoccerSeason, err error) {
 	d, _, err := r.doJson("GET")
 	if err != nil {
@@ -13,7 +13,7 @@ func (r SoccerSeasonRequest) Do() (s SoccerSeason, err error) {
 	return
 }
 
-// Prepares a request to fetch the complete list of soccer seasons.
-func (c *Client) SoccerSeason(id uint64) SoccerSeasonRequest {
+// SoccerSeason Prepares a request to fetch the complete list of soccer seasons.
+func (c *client) SoccerSeason(id uint64) SoccerSeasonRequest {
 	return SoccerSeasonRequest{c.req("soccerseasons/%d", id)}
 }
