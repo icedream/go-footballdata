@@ -13,7 +13,6 @@ func (r TeamPlayersRequest) Do() (s PlayerList, err error) {
 	return
 }
 
-// PlayersOfTeam prepares a request to fetch a team's players.
 func (c *client) PlayersOfTeam(id uint64) TeamPlayersRequest {
 	return TeamPlayersRequest{c.req("teams/%d/players", id)}
 }

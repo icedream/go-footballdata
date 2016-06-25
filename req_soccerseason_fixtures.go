@@ -30,7 +30,6 @@ func (r SoccerSeasonFixturesRequest) Do() (s FixtureList, err error) {
 	return
 }
 
-// FixturesOfSoccerSeason prepares a request to fetch the fixtures of a soccer season.
 func (c *client) FixturesOfSoccerSeason(soccerSeasonId uint64) SoccerSeasonFixturesRequest {
 	return SoccerSeasonFixturesRequest{c.req("soccerseasons/%d/fixtures", soccerSeasonId)}
 }
