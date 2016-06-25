@@ -86,6 +86,14 @@ type FixturesResponse struct {
 
 // Contains information about a fixture's results.
 type FixtureResult struct {
+	FixtureScore
+
+	HalfTime        *FixtureScore
+	ExtraTime       *FixtureScore
+	PenaltyShootout *FixtureScore
+}
+
+type FixtureScore struct {
 	GoalsHomeTeam uint16
 	GoalsAwayTeam uint16
 }
