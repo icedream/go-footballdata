@@ -27,7 +27,7 @@ import (
 
 func main() {
 	// Create client
-	client := footballdata.NewClient(http.DefaultClient)
+	client := new(footballdata.Client)
 
 	// Tell it to use our API token
 	client.SetToken("<insert your api token here>")
