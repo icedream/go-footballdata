@@ -30,7 +30,7 @@ func main() {
 	client := footballdata.NewClient(http.DefaultClient)
 
 	// Tell it to use our API token
-	client.AuthToken = "<insert your api token here>"
+	client.SetToken("<insert your api token here>")
 
 	// Get list of seasons...
 	seasons, err := client.SoccerSeasons().Do()
