@@ -8,11 +8,9 @@ import (
 )
 
 func Example() {
-	// Create client and tell it to use our API token
-	client := new(footballdata.Client)
-
-	// Tell it to use our API token (optional)
-	client.SetToken("<insert your api token here>")
+	// Create client (optionally with auth token)
+	client := new(footballdata.Client).
+		WithToken("<insert your api token here>")
 
 	// Get list of seasons...
 	seasons, err := client.SoccerSeasons().Do()
@@ -27,8 +25,9 @@ func Example() {
 }
 
 func ExampleClient() {
-	// Create client
-	client := footballdata.NewClient(http.DefaultClient)
+	// Create client (optionally with auth token)
+	client := new(footballdata.Client).
+		WithToken("<insert your api token here>")
 
 	// Tell it to use our API token (optional)
 	client.SetToken("<insert your api token here>")
@@ -56,4 +55,17 @@ func ExampleClient_setTokenAndHttpClient() {
 		Transport: &http.Transport{
 			DisableCompression: true,
 		}})
+}
+
+func ExampleClient_withCustomConfiguration() {
+	// Create client with custom token and wrapping a custom HTTP client
+	client := new(footballdata.Client).
+		WithToken("<insert your api token here>").
+		WithHttpClient(&http.Client{
+			Transport: &http.Transport{
+				DisableCompression: true,
+			}})
+
+	// Do something with the client instance here...
+	_ = client
 }

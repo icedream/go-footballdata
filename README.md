@@ -26,11 +26,9 @@ import (
 )
 
 func main() {
-	// Create client
-	client := new(footballdata.Client)
-
-	// Tell it to use our API token
-	client.SetToken("<insert your api token here>")
+	// Create client (optionally with auth token)
+	client := new(footballdata.Client).
+		WithToken("<insert your api token here>")
 
 	// Get list of seasons...
 	seasons, err := client.SoccerSeasons().Do()

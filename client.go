@@ -16,7 +16,8 @@ Provides a high-level client implementation to talk to the API that football-dat
 A new instance of Client will by default use the default HTTP client and no
 authentication token. To configure this, Client provides methods to set the
 token and the HTTP client. For more information, see the respective documentation
-of SetHttpClient and SetToken.
+of SetHttpClient and SetToken, or take a look at the fluent-style companion
+methods WithHttpClient and WithToken.
 */
 type Client struct {
 	httpClient http.Client
@@ -39,6 +40,15 @@ func (c *Client) SetToken(authToken string) {
 	c.authToken = authToken
 }
 
+// WithToken sets the authentication token on a copy of the current Client
+// instance.
+//
+// This method allows for easy fluent-style usage.
+func (c Client) WithToken(authToken string) *Client {
+	c.authToken = authToken
+	return &c
+}
+
 // SetHttpClient sets the client that should be used to send out requests.
 // Calling this method is *optional*.
 func (c *Client) SetHttpClient(client *http.Client) {
@@ -46,6 +56,18 @@ func (c *Client) SetHttpClient(client *http.Client) {
 		panic("client must not be nil")
 	}
 	c.httpClient = *client
+}
+
+// WithHttpClient sets the client that should be used to send out requests on
+// a copy of the current Client instance.
+//
+// This method allows for easy fluent-style usage.
+func (c Client) WithHttpClient(client *http.Client) *Client {
+	if client == nil {
+		panic("client must not be nil")
+	}
+	c.httpClient = *client
+	return &c
 }
 
 func (c *Client) req(path string, pathValues ...interface{}) request {
