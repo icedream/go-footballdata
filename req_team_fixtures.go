@@ -37,6 +37,6 @@ func (r TeamFixturesRequest) Do() (s FixturesResponse, err error) {
 }
 
 // FixturesOfTeam prepares a request to fetch the fixtures of a soccer season.
-func (c *client) FixturesOfTeam(id uint64) TeamFixturesRequest {
+func (c *Client) FixturesOfTeam(id uint64) TeamFixturesRequest {
 	return TeamFixturesRequest{c.req("teams/%d/fixtures", id)}
 }

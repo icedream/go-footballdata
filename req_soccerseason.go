@@ -14,6 +14,6 @@ func (r SoccerSeasonRequest) Do() (s SoccerSeason, err error) {
 }
 
 // SoccerSeason prepares a request to fetch the complete list of soccer seasons.
-func (c *client) SoccerSeason(id uint64) SoccerSeasonRequest {
+func (c *Client) SoccerSeason(id uint64) SoccerSeasonRequest {
 	return SoccerSeasonRequest{c.req("soccerseasons/%d", id)}
 }

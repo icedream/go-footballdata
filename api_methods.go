@@ -6,7 +6,7 @@ import (
 )
 
 type request struct {
-	fdClient  *client
+	fdClient  *Client
 	path      string
 	urlValues url.Values
 }

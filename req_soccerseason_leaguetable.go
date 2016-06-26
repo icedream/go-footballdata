@@ -22,6 +22,6 @@ func (r SoccerSeasonLeagueTableRequest) Do() (s SoccerSeason, err error) {
 }
 
 // LeagueTableOfSoccerSeason prepares a new request to fetch the league table of a given soccer season.
-func (c *client) LeagueTableOfSoccerSeason(soccerSeasonId uint64) SoccerSeasonLeagueTableRequest {
+func (c *Client) LeagueTableOfSoccerSeason(soccerSeasonId uint64) SoccerSeasonLeagueTableRequest {
 	return SoccerSeasonLeagueTableRequest{c.req("soccerseasons/%d/leagueTable", soccerSeasonId)}
 }

@@ -11,55 +11,49 @@ import (
 )
 
 /*
-Provides a high-level client to talk to the API that football-data.org offers.
-
-To create an instance please use NewClient(h).
-*/
-type Client interface {
-	Fixture(id uint64) FixtureRequest
-	Fixtures() FixturesRequest
-	SoccerSeason(id uint64) SoccerSeasonRequest
-	FixturesOfSoccerSeason(soccerSeasonId uint64) SoccerSeasonFixturesRequest
-	LeagueTableOfSoccerSeason(soccerSeasonId uint64) SoccerSeasonLeagueTableRequest
-	TeamsOfSoccerSeason(soccerSeasonId uint64) SoccerSeasonTeamsRequest
-	SoccerSeasons() SoccerSeasonsRequest
-	Team(id uint64) TeamRequest
-	FixturesOfTeam(id uint64) TeamFixturesRequest
-
-	SetToken(authToken string)
-}
-
-/*
 Provides a high-level client implementation to talk to the API that football-data.org offers.
 
-To create an instance please use NewClient(h).
+A new instance of Client will by default use the default HTTP client and no
+authentication token. To configure this, Client provides methods to set the
+token and the HTTP client. For more information, see the respective documentation
+of SetHttpClient and SetToken.
 */
-type client struct {
-	httpClient *http.Client
+type Client struct {
+	httpClient http.Client
 
 	// Insert an API token here if you have one. It will be sent across with all requests.
-	AuthToken string
+	authToken string
 }
 
 // NewClient creates a new Client instance that wraps around the given HTTP client.
 //
-// Call SetToken to add your token.
-func NewClient(h *http.Client) Client {
-	return &client{httpClient: h}
+// A call to this method is not necessary in order to create a working instance
+// of Client. `new(footballdata.Client)` works just as fine.
+func NewClient(h *http.Client) *Client {
+	return &Client{httpClient: *h}
 }
 
 // SetToken sets the authentication token.
 // Calling this method is *optional*.
-func (c *client) SetToken(authToken string) {
-	c.AuthToken = authToken
+func (c *Client) SetToken(authToken string) {
+	c.authToken = authToken
 }
 
-func (c *client) req(path string, pathValues ...interface{}) request {
+// SetHttpClient sets the client that should be used to send out requests.
+// Calling this method is *optional*.
+func (c *Client) SetHttpClient(client *http.Client) {
+	if client == nil {
+		panic("client must not be nil")
+	}
+	c.httpClient = *client
+}
+
+func (c *Client) req(path string, pathValues ...interface{}) request {
 	return request{c, fmt.Sprintf(path, pathValues...), url.Values{}}
 }
 
 // Executes an HTTP request with given parameters and on success returns the response wrapped in a JSON decoder.
-func (c *client) doJson(method string, path string, values url.Values) (j *json.Decoder, meta ResponseMeta, err error) {
+func (c *Client) doJson(method string, path string, values url.Values) (j *json.Decoder, meta ResponseMeta, err error) {
 	// Create request
 	req := &http.Request{
 		Method: method,
@@ -68,8 +62,8 @@ func (c *client) doJson(method string, path string, values url.Values) (j *json.
 	}
 
 	// Set request headers
-	if len(c.AuthToken) > 0 {
-		req.Header.Set("X-Auth-Token", c.AuthToken)
+	if len(c.authToken) > 0 {
+		req.Header.Set("X-Auth-Token", c.authToken)
 	}
 	req.Header.Set("X-Response-Control", "minified")
 	req.Header.Set("User-Agent", "go-footballdata/0.0")
