@@ -21,6 +21,7 @@ func (r FixtureRequest) Do() (s Fixture, err error) {
 	return
 }
 
+// Fixture prepares a request to fetch the fixtures of a soccer season.
 func (c *client) Fixture(id uint64) FixtureRequest {
 	return FixtureRequest{c.req("fixture/%d", id)}
 }

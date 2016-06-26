@@ -16,38 +16,16 @@ Provides a high-level client to talk to the API that football-data.org offers.
 To create an instance please use NewClient(h).
 */
 type Client interface {
-	// Fixture prepares a request to fetch the fixtures of a soccer season.
 	Fixture(id uint64) FixtureRequest
-
-	// Fixtures prepares a request to fetch the fixtures of a soccer season.
 	Fixtures() FixturesRequest
-
-	// FixturesOfSoccerSeason prepares a request to fetch the fixtures of a soccer season.
+	SoccerSeason(id uint64) SoccerSeasonRequest
 	FixturesOfSoccerSeason(soccerSeasonId uint64) SoccerSeasonFixturesRequest
-
-	// FixturesOfTeam prepares a request to fetch the fixtures of a soccer season.
+	LeagueTableOfSoccerSeason(soccerSeasonId uint64) SoccerSeasonLeagueTableRequest
+	TeamsOfSoccerSeason(soccerSeasonId uint64) SoccerSeasonTeamsRequest
+	SoccerSeasons() SoccerSeasonsRequest
+	Team(id uint64) TeamRequest
 	FixturesOfTeam(id uint64) TeamFixturesRequest
 
-	// LeagueTableOfSoccerSeason prepares a new request to fetch the league table of a given soccer season.
-	LeagueTableOfSoccerSeason(soccerSeasonId uint64) SoccerSeasonLeagueTableRequest
-
-	// PlayersOfTeam prepares a request to fetch a team's players.
-	PlayersOfTeam(id uint64) TeamPlayersRequest
-
-	// SoccerSeason prepares a request to fetch the complete list of soccer seasons.
-	SoccerSeason(id uint64) SoccerSeasonRequest
-
-	// SoccerSeasons prepares a request to fetch the complete list of soccer seasons.
-	SoccerSeasons() SoccerSeasonsRequest
-
-	// Team prepares a request to fetch a team's information.
-	Team(id uint64) TeamRequest
-
-	// TeamsOfSoccerSeason prepares a new request to fetch the league table of a given soccer season.
-	TeamsOfSoccerSeason(soccerSeasonId uint64) SoccerSeasonTeamsRequest
-
-	// SetToken sets the authentication token.
-	// Calling this method is *optional*.
 	SetToken(authToken string)
 }
 
@@ -70,6 +48,8 @@ func NewClient(h *http.Client) Client {
 	return &client{httpClient: h}
 }
 
+// SetToken sets the authentication token.
+// Calling this method is *optional*.
 func (c *client) SetToken(authToken string) {
 	c.AuthToken = authToken
 }

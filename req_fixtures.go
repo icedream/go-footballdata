@@ -30,6 +30,7 @@ func (r FixturesRequest) Do() (s FixturesResponse, err error) {
 	return
 }
 
+// Fixtures prepares a request to fetch the fixtures of a soccer season.
 func (c *client) Fixtures() FixturesRequest {
 	return FixturesRequest{c.req("fixtures")}
 }

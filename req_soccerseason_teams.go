@@ -13,6 +13,7 @@ func (r SoccerSeasonTeamsRequest) Do() (s TeamList, err error) {
 	return
 }
 
+// TeamsOfSoccerSeason prepares a new request to fetch the league table of a given soccer season.
 func (c *client) TeamsOfSoccerSeason(soccerSeasonId uint64) SoccerSeasonTeamsRequest {
 	return SoccerSeasonTeamsRequest{c.req("soccerseasons/%d/leagueTable", soccerSeasonId)}
 }
