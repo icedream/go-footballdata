@@ -44,7 +44,7 @@ type SoccerSeason struct {
 }
 
 // Contains the list of competitions returned by the API.
-type CompetitionList []Competitions
+type CompetitionList []Competition
 
 // Contains information about a competition.
 type Competition struct {
