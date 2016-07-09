@@ -33,7 +33,7 @@ type SoccerSeason struct {
 	NumberOfMatchdays uint16
 	NumberOfTeams     uint16
 	NumberOfGames     uint16
-	LastUpdates       time.Time
+	LastUpdated       time.Time
 }
 
 // Contains the fixture and the head to head information delivered by the API
