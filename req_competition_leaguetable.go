@@ -11,7 +11,7 @@ func (r CompetitionLeagueTableRequest) Matchday(matchday uint16) CompetitionLeag
 }
 
 // Do executes the request.
-func (r CompetitionLeagueTableRequest) Do() (s Competition, err error) {
+func (r CompetitionLeagueTableRequest) Do() (s LeagueTable, err error) {
 	d, _, err := r.doJson("GET")
 	if err != nil {
 		return

@@ -153,3 +153,23 @@ type Player struct {
 	ContractUntil time.Time
 	MarketValue   string
 }
+
+// Contains the league table for a season.
+type LeagueTable struct {
+	LeagueCaption string
+	Matchday      uint16
+	Standing      []TeamLeagueStatistics
+}
+
+// Contains statistical information about a team's performance in a league.
+type TeamLeagueStatistics struct {
+	Rank           uint8
+	Team           string
+	TeamId         uint64
+	PlayedGames    uint16
+	CrestURI       string
+	Points         uint16
+	Goals          uint16
+	GoalsAgainst   uint16
+	GoalDifference uint8
+}

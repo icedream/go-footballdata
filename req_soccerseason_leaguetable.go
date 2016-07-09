@@ -15,7 +15,7 @@ func (r SoccerSeasonLeagueTableRequest) Matchday(matchday uint16) SoccerSeasonLe
 // DEPRECATED.
 //
 // Do executes the request.
-func (r SoccerSeasonLeagueTableRequest) Do() (s SoccerSeason, err error) {
+func (r SoccerSeasonLeagueTableRequest) Do() (s LeagueTable, err error) {
 	d, _, err := r.doJson("GET")
 	if err != nil {
 		return
