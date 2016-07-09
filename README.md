@@ -31,14 +31,14 @@ func main() {
 		WithToken("<insert your api token here>")
 
 	// Get list of seasons...
-	seasons, err := client.SoccerSeasons().Do()
+	competitions, err := client.Competitions().Do()
 	if err != nil {
 		panic(err)
 	}
 
 	// ...and print them
-	for _, season := range seasons {
-		fmt.Println(season.Id, season.Caption)
+	for _, competition := range competitions {
+		fmt.Println(competition.Id, competition.Caption)
 	}
 }
 
