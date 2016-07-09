@@ -7,9 +7,25 @@ import (
 
 type FixturesRequest struct{ request }
 
-// TimeFrame modifies the request to specify a specific time frame.
+// TimeFrame modifies the request to specify a specific relative time frame.
 func (r FixturesRequest) TimeFrame(timeframe time.Duration) FixturesRequest {
 	r.urlValues.Set("timeFrame", durationToTimeFrame(timeframe))
+	return r
+}
+
+// TimeFrameStart modifies the request to specify the beginning of the time frame filter for the returned results.
+//
+// Only the year, month and day of the Time value will be used for the request.
+func (r FixturesRequest) TimeFrameStart(date time.Time) FixturesRequest {
+	r.urlValues.Set("timeFrameStart", date.Format(timeFrameLayout))
+	return r
+}
+
+// TimeFrameEnd modifies the request to specify the end of the time frame filter for the returned results.
+//
+// Only the year, month and day of the Time value will be used for the request.
+func (r FixturesRequest) TimeFrameStart(date time.Time) FixturesRequest {
+	r.urlValues.Set("timeFrameEnd", date.Format(timeFrameLayout))
 	return r
 }
 

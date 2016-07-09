@@ -13,9 +13,25 @@ func (r CompetitionFixturesRequest) Matchday(matchday uint16) CompetitionFixture
 	return r
 }
 
-// TimeFrame modifies the request to specify a specific time frame.
+// TimeFrame modifies the request to specify a specific relative time frame.
 func (r CompetitionFixturesRequest) TimeFrame(timeframe time.Duration) CompetitionFixturesRequest {
 	r.urlValues.Set("timeFrame", durationToTimeFrame(timeframe))
+	return r
+}
+
+// TimeFrameStart modifies the request to specify the beginning of the time frame filter for the returned results.
+//
+// Only the year, month and day of the Time value will be used for the request.
+func (r CompetitionFixturesRequest) TimeFrameStart(date time.Time) CompetitionFixturesRequest {
+	r.urlValues.Set("timeFrameStart", date.Format(timeFrameLayout))
+	return r
+}
+
+// TimeFrameEnd modifies the request to specify the end of the time frame filter for the returned results.
+//
+// Only the year, month and day of the Time value will be used for the request.
+func (r CompetitionFixturesRequest) TimeFrameStart(date time.Time) CompetitionFixturesRequest {
+	r.urlValues.Set("timeFrameEnd", date.Format(timeFrameLayout))
 	return r
 }
 
