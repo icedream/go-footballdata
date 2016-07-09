@@ -23,11 +23,31 @@ const (
 	Venue_Away Venue = "away"
 )
 
+// DEPRECATED.
+//
 // Contains the list of soccer seasons returned by the API.
 type SoccerSeasonList []SoccerSeason
 
+// DEPRECATED.
+//
 // Contains information about a soccer season.
 type SoccerSeason struct {
+	Id                uint64
+	Caption           string
+	League            string
+	Year              string
+	CurrentMatchday   uint16
+	NumberOfMatchdays uint16
+	NumberOfTeams     uint16
+	NumberOfGames     uint16
+	LastUpdated       time.Time
+}
+
+// Contains the list of competitions returned by the API.
+type CompetitionList []Competitions
+
+// Contains information about a competition.
+type Competition struct {
 	Id                uint64
 	Caption           string
 	League            string
