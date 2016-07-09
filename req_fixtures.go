@@ -24,7 +24,7 @@ func (r FixturesRequest) TimeFrameStart(date time.Time) FixturesRequest {
 // TimeFrameEnd modifies the request to specify the end of the time frame filter for the returned results.
 //
 // Only the year, month and day of the Time value will be used for the request.
-func (r FixturesRequest) TimeFrameStart(date time.Time) FixturesRequest {
+func (r FixturesRequest) TimeFrameEnd(date time.Time) FixturesRequest {
 	r.urlValues.Set("timeFrameEnd", date.Format(timeFrameLayout))
 	return r
 }
