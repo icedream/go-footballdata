@@ -21,7 +21,7 @@ func (r CompetitionsRequest) Do() (s CompetitionList, err error) {
 	return
 }
 
-// Competitions prepares a request to fetch the complete list of soccer seasons.
+// Competitions prepares a request to fetch the list of competitions for the current season or for any specified season (via the "Season" submethod).
 func (c *Client) Competitions() CompetitionsRequest {
 	return CompetitionsRequest{c.req("competitions")}
 }

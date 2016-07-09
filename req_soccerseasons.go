@@ -29,7 +29,7 @@ func (r SoccerSeasonsRequest) Do() (s SoccerSeasonList, err error) {
 
 // DEPRECATED.
 //
-// SoccerSeasons prepares a request to fetch the complete list of soccer seasons.
+// SoccerSeasons prepares a request to fetch the list of soccer seasons for the current season or for any specified season (via the "Season" submethod).
 func (c *Client) SoccerSeasons() SoccerSeasonsRequest {
 	return SoccerSeasonsRequest{c.req("soccerseasons")}
 }
