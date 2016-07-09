@@ -166,7 +166,7 @@ type TeamLeagueStatistics struct {
 	Rank           uint8
 	Team           string
 	TeamId         uint64
-	PlayedGames    uint16
+	PlayedGames    uint8
 	CrestURI       string
 	Points         uint16
 	Goals          uint16
