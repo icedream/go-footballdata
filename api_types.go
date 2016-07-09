@@ -5,9 +5,12 @@ import "time"
 type FixtureStatus string
 
 const (
-	FixtureStatus_Timed    FixtureStatus = "TIMED"
-	FixtureStatus_InPlay   FixtureStatus = "IN_PLAY"
-	FixtureStatus_Finished FixtureStatus = "FINISHED"
+	FixtureStatus_Scheduled FixtureStatus = "SCHEDULED"
+	FixtureStatus_Timed     FixtureStatus = "TIMED"
+	FixtureStatus_Postponed FixtureStatus = "POSTPONED"
+	FixtureStatus_InPlay    FixtureStatus = "IN_PLAY"
+	FixtureStatus_Canceled  FixtureStatus = "CANCELED"
+	FixtureStatus_Finished  FixtureStatus = "FINISHED"
 )
 
 // Describes the venue.
