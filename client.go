@@ -88,7 +88,7 @@ func (c *Client) doJson(method string, path string, values url.Values) (j *json.
 		req.Header.Set("X-Auth-Token", c.authToken)
 	}
 	req.Header.Set("X-Response-Control", "minified")
-	req.Header.Set("User-Agent", "go-footballdata/0.0")
+	req.Header.Set("User-Agent", "go-footballdata/0.1")
 
 	// Execute request
 	resp, err := c.httpClient.Do(req)
