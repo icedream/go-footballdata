@@ -163,6 +163,7 @@ type LeagueTable struct {
 
 // Contains statistical information about a team's performance in a league.
 type TeamLeagueStatistics struct {
+	Team           string
 	CrestURI       string
 	Draws          uint16
 	GoalDifference int16
@@ -172,7 +173,6 @@ type TeamLeagueStatistics struct {
 	PlayedGames    uint8
 	Points         uint16
 	Position       uint8
-	TeamName       string
 	Wins           uint16
 	Home           ShortTeamLeagueStatistics
 	Away           ShortTeamLeagueStatistics
