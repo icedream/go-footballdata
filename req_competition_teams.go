@@ -15,5 +15,5 @@ func (r CompetitionTeamsRequest) Do() (s TeamList, err error) {
 
 // TeamsOfCompetition prepares a new request to fetch the league table of a given soccer season.
 func (c *Client) TeamsOfCompetition(soccerSeasonId uint64) CompetitionTeamsRequest {
-	return CompetitionTeamsRequest{c.req("competitions/%d/leagueTable", soccerSeasonId)}
+	return CompetitionTeamsRequest{c.req("competitions/%d/teams", soccerSeasonId)}
 }
