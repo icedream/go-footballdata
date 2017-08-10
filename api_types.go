@@ -162,8 +162,9 @@ type LeagueTable struct {
 }
 
 // Contains statistical information about a team's performance in a league.
+// TODO - Introduce minified variant of this struct.
 type TeamLeagueStatistics struct {
-	Team           string
+	TeamName       string
 	CrestURI       string
 	Draws          uint16
 	GoalDifference int16

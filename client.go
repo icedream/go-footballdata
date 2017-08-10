@@ -87,7 +87,6 @@ func (c *Client) doJson(method string, path string, values url.Values) (j *json.
 	if len(c.authToken) > 0 {
 		req.Header.Set("X-Auth-Token", c.authToken)
 	}
-	req.Header.Set("X-Response-Control", "minified")
 	req.Header.Set("User-Agent", "go-footballdata/0.1")
 
 	// Execute request
