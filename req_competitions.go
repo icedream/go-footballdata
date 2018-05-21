@@ -1,8 +1,21 @@
 package footballdata
 
-import "fmt"
+import (
+	"fmt"
+	"strings"
+)
 
 type CompetitionsRequest struct{ request }
+
+// Areas modifies the request to specify a filter for specific area information that should be returned.
+func (r AreasRequest) Areas(areaIDs ...uint32) AreasRequest {
+	areasStr := []string{}
+	for _, areaID := range areaIDs {
+		areasStr = append(areasStr, fmt.Sprintf("%d", areaID))
+	}
+	r.urlValues.Set("areas", strings.Join(areasStr, ","))
+	return r
+}
 
 // Season modifies the request to specify a season.
 func (r CompetitionsRequest) Season(num uint32) CompetitionsRequest {

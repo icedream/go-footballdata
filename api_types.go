@@ -186,3 +186,23 @@ type ShortTeamLeagueStatistics struct {
 	Losses       uint16
 	Wins         uint16
 }
+
+// Contains a list of areas.
+type AreaList struct {
+	Count   uint32
+	Filters *AreaFilters
+	Areas   []Area
+}
+
+type AreaFilters struct {
+	Areas []uint32
+}
+
+// Contains area information.
+type Area struct {
+	Id           uint32
+	Name         string
+	CountryCode  string
+	ParentAreaId uint32
+	ParentArea   string // will be "" if no parent area exists
+}
