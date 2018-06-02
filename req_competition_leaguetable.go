@@ -22,6 +22,6 @@ func (r CompetitionLeagueTableRequest) Do() (s LeagueTable, err error) {
 }
 
 // LeagueTableOfCompetition prepares a new request to fetch the league table of a given soccer season.
-func (c *Client) LeagueTableOfCompetition(soccerSeasonId uint64) CompetitionLeagueTableRequest {
-	return CompetitionLeagueTableRequest{c.req("competitions/%d/leagueTable", soccerSeasonId)}
+func (c *Client) LeagueTableOfCompetition(competitionId uint64) CompetitionLeagueTableRequest {
+	return CompetitionLeagueTableRequest{c.req("competitions/%d/leagueTable", competitionId)}
 }
