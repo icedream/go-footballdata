@@ -158,14 +158,13 @@ type Player struct {
 type LeagueTable struct {
 	LeagueCaption string
 	Matchday      uint16
-	Standing      []TeamLeagueStatistics
-	Standings     map[string][]TeamLeagueStatistics
+	Standing      []TeamLeagueStatisticsInStanding
+	Standings     map[string][]TeamLeagueStatisticsInStandings
 }
 
 // Contains statistical information about a team's performance in a league.
 // TODO - Introduce minified variant of this struct.
 type TeamLeagueStatistics struct {
-	TeamName       string
 	CrestURI       string
 	Draws          uint16
 	GoalDifference int16
@@ -178,6 +177,18 @@ type TeamLeagueStatistics struct {
 	Wins           uint16
 	Home           ShortTeamLeagueStatistics
 	Away           ShortTeamLeagueStatistics
+}
+
+// Contains statistical information as a variant for the "Standing" field.
+type TeamLeagueStatisticsInStanding struct {
+	TeamLeagueStatistics
+	TeamName string
+}
+
+// Contains statistical information as a variant for the "Standings" field.
+type TeamLeagueStatisticsInStandings struct {
+	TeamLeagueStatistics
+	Team string
 }
 
 type ShortTeamLeagueStatistics struct {
