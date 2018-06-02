@@ -159,7 +159,7 @@ type LeagueTable struct {
 	LeagueCaption string
 	Matchday      uint16
 	Standing      []TeamLeagueStatistics
-	Standings     map[string]TeamLeagueStatistics
+	Standings     map[string][]TeamLeagueStatistics
 }
 
 // Contains statistical information about a team's performance in a league.
