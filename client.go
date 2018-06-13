@@ -71,11 +71,16 @@ func (c Client) WithHttpClient(client *http.Client) *Client {
 }
 
 func (c *Client) req(path string, pathValues ...interface{}) request {
-	return request{c, fmt.Sprintf(path, pathValues...), url.Values{}}
+	return request{
+		fdClient:  c,
+		path:      fmt.Sprintf(path, pathValues...),
+		urlValues: make(url.Values),
+		headers:   map[string]string{},
+	}
 }
 
 // Executes an HTTP request with given parameters and on success returns the response wrapped in a JSON decoder.
-func (c *Client) doJson(method string, path string, values url.Values) (j *json.Decoder, meta ResponseMeta, err error) {
+func (c *Client) doJson(method string, path string, values url.Values, headers map[string]string) (j *json.Decoder, meta ResponseMeta, err error) {
 	// Create request
 	req := &http.Request{
 		Method: method,
@@ -86,6 +91,9 @@ func (c *Client) doJson(method string, path string, values url.Values) (j *json.
 	// Set request headers
 	if len(c.authToken) > 0 {
 		req.Header.Set("X-Auth-Token", c.authToken)
+	}
+	for key, value := range headers {
+		req.Header.Set(key, value)
 	}
 	req.Header.Set("User-Agent", "go-footballdata/0.1")
 
