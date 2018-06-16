@@ -173,7 +173,6 @@ type TeamLeagueStatistics struct {
 	Losses         uint16
 	PlayedGames    uint8
 	Points         uint16
-	Position       uint8
 	Wins           uint16
 	Home           ShortTeamLeagueStatistics
 	Away           ShortTeamLeagueStatistics
@@ -183,12 +182,14 @@ type TeamLeagueStatistics struct {
 type TeamLeagueStatisticsInStanding struct {
 	TeamLeagueStatistics
 	TeamName string
+	Position uint8
 }
 
 // Contains statistical information as a variant for the "Standings" field.
 type TeamLeagueStatisticsInStandings struct {
 	TeamLeagueStatistics
 	Team string
+	Rank uint8
 }
 
 type ShortTeamLeagueStatistics struct {
