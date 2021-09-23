@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/icedream/go-footballdata.svg?branch=master)](https://travis-ci.org/icedream/go-footballdata)
 [![GoDoc](https://godoc.org/github.com/icedream/go-footballdata?status.svg)](https://godoc.org/github.com/icedream/go-footballdata)
 
-This library provides functionality to communicate with the API provided by http://football-api.org. This way programs can use data provided by the API in order to show information about football/soccer games from various seasons for free.
+This library provides functionality to communicate with the API provided by http://football-data.org. This way programs can use data provided by the API in order to show information about football/soccer games from various seasons for free.
 
 ## How to use this library?
 
